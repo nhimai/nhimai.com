@@ -1,0 +1,32 @@
+#order deny,allow
+#deny from all
+
+# ###ALLOW IP
+
+#allow from x.x.x.x
+
+# ###AUTHENTICATION
+#AuthType Basic
+#AuthName "Developer only, please contact to cuulong777-www@yahoo.com.sg, many thanks"
+#AuthUserFile /var/www/suexec-home/testing/public_html/.htpasswd
+#Require valid-user
+
+# disable directory browsing
+#Options All -Indexes
+
+# secure htaccess file
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
